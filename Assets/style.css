@@ -1,0 +1,101 @@
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+div {
+  margin: 4px;
+}
+
+h1 {
+  background-color: #20bf55;
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 42px;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+h4 {
+  font-weight: 600;
+}
+
+.mainDisplay {
+  display: flex;
+}
+
+.searchBar {
+  border-radius: 0.75rem;
+  width: 100%;
+  padding: 4px;
+  border: grey solid 2px;
+  margin-bottom: 12px;
+  margin-left: 6px;
+}
+
+.searchBtn {
+  border: #1D9BF0 solid 2px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #1D9BF0;
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 2px;
+  margin-left: 5px;
+}
+
+.uvi {
+  color: white;
+}
+
+.uvi[data-uv="low"] {
+  background: green;
+}
+
+.uvi[data-uv="medium"] {
+  background: orange;
+}
+
+.uvi[data-uv="high"] {
+  background: red;
+}
+
+#weatherText {
+  color: white;
+  flex-wrap: wrap;
+}
+
+#searchCity {
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
+.daycard,
+#currentWeather {
+  border: blue solid 2px;
+  background-color: grey;
+  color: white;
+  text-decoration: underline;
+  border-radius: 0.5rem;
+}
+
+.daycard:hover,
+#currentWeather:hover {
+opacity: 70%;
+cursor: pointer;;
+}
+
+.btn-secondary {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

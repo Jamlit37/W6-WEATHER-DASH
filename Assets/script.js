@@ -1,4 +1,4 @@
-var currentWeather = document.getElementById("currentWeather");
+var weatherNow = document.getElementById("currentWeather");
 var searchColumn = document.getElementById("searchArea");
 var renderEl = document.getElementsByClassName("data-display");
 var previousSearchesElem = document.getElementById("pastSearch");
@@ -59,11 +59,12 @@ var getForecast = function (coords, citySearched) {
 };
 
 var displayCurrent = function (apiData, citySearched) {
-  var wind = apiData.wind_speed;
-  var temperature = apiData.temp;
+  var windNow = apiData.wind_speed;
+  var tempNow = apiData.temp;
   var humidityNow = apiData.humidity;
   var uviNow = apiData.uvi;
-  var icon = apiData.weather[0].icon;
+
+  var iconNow = apiData.weather[0].icon;
   var titleEl = document.createElement("h2");
   var tempEl = document.createElement("div");
   var windEl = document.createElement("div");
@@ -75,29 +76,80 @@ var displayCurrent = function (apiData, citySearched) {
     " (" +
     moment(apiData.dt, "X").format("DD/MM/YYYY") +
     ") <img src=https://openweathermap.org/img/wn/" +
-    icon +
+    iconNow +
     "@2x.png>";
-  tempEl.innerHTML = "Temperature: " + temperature + " °C";
-  windEl.innerHTML = "Wind: " + wind + " KPH";
+  tempEl.innerHTML = "The current temperature: " + tempNow + " °C";
+  windEl.innerHTML = "Wind outside: " + windNow + " KPH";
   humidityEl.innerHTML = "Humidity: " + humidityNow + " %";
   uviEl.innerHTML =
-    "UVI: <span class='uv-indicator p-1 rounded' data-uv='high'>" +
+    "Ultra Violet Index: <span class='uvi p-1 rounded' data-uv='high'>" +
     uviNow +
     "</span>";
 
-  currentWeather.innerHTML = "";
-  currentWeather.append(titleEl);
-  currentWeather.append(tempEl);
-  currentWeather.append(windEl);
-  currentWeather.append(humidityEl);
-  currentWeather.append(uviEl);
+  weatherNow.innerHTML = "";
+  weatherNow.append(titleEl);
+  weatherNow.append(tempEl);
+  weatherNow.append(windEl);
+  weatherNow.append(humidityEl);
+  weatherNow.append(uviEl);
 
   if (uviNow < 2) {
-    document.getElementsByClassName("uv-indicator")[0].dataset.uv = "low";
+    document.getElementsByClassName("uvi")[0].dataset.uv = "low";
   } else if (uviNow < 4) {
-    document.getElementsByClassName("uv-indicator")[0].dataset.uv = "medium";
+    document.getElementsByClassName("uvi")[0].dataset.uv = "medium";
   }
 };
 
+var display5DayForecast = function (apiData) {
+  var weatherCards = document.getElementsByClassName("daycard");
+  for (var i = 0; i < weatherCards.length; i++) {
+    var forecastDate = moment(apiData[i+1].dt, "X").format("DD/MM/YYYY");
+    var forecastIconURL =
+      "https://openweathermap.org/img/wn/" +
+      apiData[i].weather[0].icon +
+      "@2x.png";
+      weatherCards[i].innerHTML =
+      "<h5>" +
+      forecastDate +
+      "</h5><img src=" +
+      forecastIconURL +
+      "><p>Temperature will be: " +
+      apiData[i].temp.day +
+      " °C</p><p>Wind will be: " +
+      apiData[i].wind_speed +
+      " KPH</p><p>Humidity will be: " +
+      apiData[i].humidity +
+      " %</p>";
+  }
+};
 
+var saveSearchedCity = function (citySearched) {
+  var newSearchesList = [];
+  if (!localStorage.getItem("previousSearches")) {
+    newSearchesList.push(citySearched);
+  } else {
+    newSearchesList = JSON.parse(localStorage.getItem("previousSearches"));
+    if (!newSearchesList.includes(citySearched) || newSearchesList == "null") {
+      newSearchesList.push(citySearched);
+    }
+  }
+  localStorage.setItem("previousSearches", JSON.stringify(newSearchesList));
+  renderSavedSearches();
+};
+
+var renderSavedSearches = function () {
+  previousSearchesElem.innerHTML = "";
+  if (localStorage.getItem("previousSearches")) {
+    var searchHistory = JSON.parse(localStorage.getItem("previousSearches"));
+    for (var i = 0; i < searchHistory.length; i++) {
+      var newElem = document.createElement("button");
+      newElem.innerHTML = searchHistory[i];
+      newElem.classList.add("btn", "btn-secondary", "w-100");
+      newElem.setAttribute("type", "button");
+      previousSearchesElem.append(newElem);
+    }
+  }
+};
+
+renderSavedSearches();
 searchColumn.addEventListener("click", searchButton);
