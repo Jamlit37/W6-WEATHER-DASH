@@ -8,4 +8,6 @@ Link to LIVE URL: https://jamlit37.github.io/W6-WEATHER-DASH/
 
 Link to GitHub Repo: https://github.com/Jamlit37/W6-WEATHER-DASH
 
-Screenshot link: ![Screenshot of refactored deployed portfolio site](Assets\screenshot.PNG?raw=true)
+Two Screenshot links: ![Screenshot of refactored deployed weather app site](Assets\screenshot.PNG?raw=true)
+
+![image](https://user-images.githubusercontent.com/104121180/178259831-198eabe8-64f8-44cc-9907-6b0a10c0ab9f.PNG?raw=true)
