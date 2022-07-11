@@ -8,6 +8,7 @@ div {
   margin: 4px;
 }
 
+/* Chose a difference colour scheme but could find a more similar one to the initial screensahot provided */
 h1 {
   background-color: #20bf55;
   background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
@@ -46,7 +47,7 @@ h4 {
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
-  background-color: #1D9BF0;
+  background-color: #1498f0;
   border-radius: 0.5rem;
   width: 100%;
   padding: 5px;
@@ -80,6 +81,7 @@ h4 {
   margin-left: 5px;
 }
 
+/* Card background and hover effects */
 .daycard,
 #currentWeather {
   border: blue solid 2px;

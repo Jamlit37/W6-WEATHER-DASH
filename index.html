@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Used bootstrap for the full layout of the website -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Stylesheets for reset and index.html changes -->
     <link rel="stylesheet" href="./Assets/reset.css">
     <link rel="stylesheet" href="./Assets/style.css">
     <title>Weather Dashboard</title>
   </head>
 
   <body>
+    <!-- Header made to mimic the screenshot provided in  the instructiuons -->
     <header class="container-fluid">
         <div class="row">
             <div class="col-12 text-center p-3">
@@ -17,25 +20,31 @@
             </div>
         </div>
     </header>
+    <!-- Container created to hold the search area div -->
     <div class="container-fluid p-4">
         <div class="row">
             <div class="col-12 col-md-3" id="searchArea">
+                <!-- Bootstrap framework to create the form -->
                 <form>
                     <h2>Search for a City:</h2>
                     <input type="text" class="form-control my-3" id="searchCity" placeholder="Search your city here...">
                     <button type="submit" class="btn btn-primary w-100" id="search-button">Search</button>
                 </form>
                 <br>
+                <!-- Here is where the previous search history will be stored -->
                 <div id="pastSearch">
                 </div>
             </div>
-            <div class="col-12 col-md-9 px-5" id="weather-data">
+            <!-- Bootstrap to set up the dynamic pages and weather data coming in -->
+            <div class="col-12 col-md-8 px-4" id="weather-data">
                 <div class="row border py-3" id="currentWeather"><h4 class="data-display">Search for a city to display the current weather here.</h4></div>
+                <!-- Displaying the 5 day forecast over in this section -->
                 <div class="row justify-content-around">
                     <div class="col-12 mt-4">
                         <h4>5-Day Forecast:</h4>
                     </div>
                     <div class="col-12 data-display"><h5>Search for a city to display the 5-day forecast here.</h5></div>
+                    <!-- All divs created here. -->
                     <div class="col-6 col-md-3 col-lg-2 m-1 daycard text-center"></div>
                     <div class="col-6 col-md-3 col-lg-2 m-1 daycard text-center"></div>
                     <div class="col-6 col-md-3 col-lg-2 m-1 daycard text-center"></div>
@@ -45,6 +54,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Moment.js used for the time and put in the new city information -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="./Assets/script.js"></script>
   </body>

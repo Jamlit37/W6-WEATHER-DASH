@@ -1,11 +1,15 @@
+// All global variables added here
 var weatherNow = document.getElementById("currentWeather");
 var searchColumn = document.getElementById("searchArea");
 var renderEl = document.getElementsByClassName("data-display");
 var previousSearchesElem = document.getElementById("pastSearch");
+// Here showcases the first use of moment.js
 var date = moment().format("dddd, MMMM Do YYYY");
 var dateTime = moment().format("YYYY-MM-DD HH:MM:SS");
 var cityInput = document.querySelector("#searchCity");
 
+
+// This function ensures that the form only runs when you click a button as I was having an issue where it would search for a city as soon as I clciked on the search input
 var searchButton = function (e) {
   e.preventDefault();
   if (e.target.tagName == "BUTTON") {
@@ -37,7 +41,7 @@ var searchButton = function (e) {
     }
   }
 };
-
+// Using this function takes into account the longitude and latitude from the city searched API
 var getForecast = function (coords, citySearched) {
   var coordUrl =
     "https://api.openweathermap.org/data/2.5/onecall?lat=" +
@@ -58,6 +62,7 @@ var getForecast = function (coords, citySearched) {
     });
 };
 
+// Simple way to input HTML instead of already having cards which then the information/data will append to. This means that the cards will apppear from no where
 var displayCurrent = function (apiData, citySearched) {
   var windNow = apiData.wind_speed;
   var tempNow = apiData.temp;
@@ -85,7 +90,7 @@ var displayCurrent = function (apiData, citySearched) {
     "Ultra Violet Index: <span class='uvi p-1 rounded' data-uv='high'>" +
     uviNow +
     "</span>";
-
+// Appending all the html and elements created (at first I forgot to add this but this link was very helpful: https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML)
   weatherNow.innerHTML = "";
   weatherNow.append(titleEl);
   weatherNow.append(tempEl);
@@ -100,6 +105,7 @@ var displayCurrent = function (apiData, citySearched) {
   }
 };
 
+// For loop made easier to understand for me after spending time on the Group Project and being taught this method instead of writing 5 repetative lines of code
 var display5DayForecast = function (apiData) {
   var weatherCards = document.getElementsByClassName("daycard");
   for (var i = 0; i < weatherCards.length; i++) {
@@ -123,6 +129,8 @@ var display5DayForecast = function (apiData) {
   }
 };
 
+
+// An activity in class (creating a shopping trolley list) really was the main source for this code as it related very much!
 var saveSearchedCity = function (citySearched) {
   var newSearchesList = [];
   if (!localStorage.getItem("previousSearches")) {
